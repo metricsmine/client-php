@@ -8,6 +8,7 @@ class Client {
         'format' => 'json',
         'code' => 'api',
         'service' => 'php',
+        'instance' => null,
         'key' => [
             'public' => null,
             'private' => null,
@@ -22,6 +23,7 @@ class Client {
     ];
 
     public function __construct($options = []) {
+        $this->options['instance'] = gethostname();
         $this->options = array_merge($this->options, $options);
     }
 
