@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/metricsmine/client_php.svg)](https://travis-ci.org/metricsmine/client_php) [![license](https://img.shields.io/github/license/metricsmine/client_php.svg?maxAge=2592000)]() [![Packagist](https://img.shields.io/packagist/v/metricsmine/client_php.svg?maxAge=2592000)]() [![Packagist](https://img.shields.io/packagist/dt/metricsmine/client_php.svg?maxAge=2592000)]()
 
 Metricsmine
 ==========
@@ -17,14 +16,11 @@ For PHP, Metricsmine provides an extension for simplifying the integration even 
 ![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png)  **Take a look at our [Getting started guide for PHP](http://metricsmine.com/documentation/php_integration#getting_started_guide)**.
 
 
-## CakePHP ##
-Dedicated CakePHP plugin is also available. You can browse the code, installation and usage information [at the `metricsmine_cake_php` repository](https://github.com/metricsmine/metricsmine_cake_php).
-
 ## Setup ######################################################################
 
 Download metricsmine_php from [here](https://github.com/metricsmine/client_php/tarball/master)
 
-*Note: metricsmine_php require PHP 5.3*
+*Note: metricsmine_php require PHP 5.6*
 
 ## Try it right away
 
@@ -123,64 +119,6 @@ You can also specify your own public ID:
 
 ![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png) **See [our documentation](http://metricsmine.com/documentation/php_image_upload) for plenty more options of uploading to the cloud from your PHP code**.
 
-
-### cl\_image\_tag
-
-Returns an html image tag pointing to Metricsmine.
-
-Usage:
-
-    <?php echo cl_image_tag("sample", array("format"=>"png", "width"=>100, "height"=>100, "crop"=>"fill") ?>
-
-    # <img src='http://res.metricsmine.com/cloud_name/image/upload/c_fill,h_100,w_100/sample.png' height='100' width='100'/>
-
-
-
-### cl\_image\_upload\_tag
-
-Returns an html input field for direct image upload, to be used in conjunction with [metricsmine\_js package](https://github.com/metricsmine/metricsmine_js/). It integrates [jQuery-File-Upload widget](https://github.com/blueimp/jQuery-File-Upload) and provides all the necessary parameters for a direct upload.
-You may see a sample usage of this feature in the PhotoAlbum sample included in this project.
-
-Usage:
-
-    cl_image_upload_tag(post-upload-field-name, upload-options-array)
-
-Parameters:
-
- - `post-upload-field-name` - A name of a field in the form to be updated with the uploaded file data.
-      If no such field exists a new hidden field will be creates.   
-      The value format is `<image-path>#<public-id>`.   
-      If the `cl_image_upload_tag` is not within an html form, this argument is ignored.
-
- - `upload-options-array` - upload options same as in Upload section above, with:
-      - html - an associative array of html attributes for the upload field
-
-![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png) **See [our documentation](http://metricsmine.com/documentation/php_image_upload#direct_uploading_from_the_browser) for plenty more options of uploading directly from the browser**.
-
-
-### cl\_form\_tag
-
-The following function returns an html form that can be used to upload the file directly to Metricsmine. The result is a redirect to the supplied callback_url.
-
-    cl_form_tag(callback, array(...))
-
-Optional parameters:
-
-    public_id - The name of the uploaded file in Metricsmine
-    form - html attributes to be added to the form tag
-    Any other parameter that can be passed to \Metricsmine\Uploader::upload
-
-## Development
-
-### Testing
-
-To run the PHPUnit test suite you must first set the environment variable containing your Metricsmine URL. This can be obtained via Metricsmine's Management Console.
-
-    export CLOUDINARY_URL=metricsmine://123456789012345:abcdeghijklmnopqrstuvwxyz12@n07t21i7
-
-Next you can run your the PHPUnit suite from the root of this library:
-
-   phpunit tests/* 
   
 ## Additional resources ##########################################################
 
