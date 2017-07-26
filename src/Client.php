@@ -116,6 +116,7 @@ class Client {
             . $this->options['key']['public'] . '/logs'
             . '/' . $this->options['service']
             . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
+//            . '/'
         ;
 
         $curl = curl_init($url);
