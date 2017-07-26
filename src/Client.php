@@ -8,7 +8,7 @@ class Client {
         'format' => 'json',
         'code' => 'api',
         'service' => null,
-        'keys' => [
+        'key' => [
             'public' => null,
             'private' => null,
         ],
@@ -19,7 +19,7 @@ class Client {
     ];
 
     public function __construct($options = []) {
-        $this->options = $options;
+        $this->options = array_merge($this->options, $options);
     }
 
     public static function forge($options = []) {
@@ -33,8 +33,8 @@ class Client {
 
     public function keys($public, $private, $code = null) {
         $this->options['code'] = $code;
-        $this->options['keys']['public'] = $public;
-        $this->options['keys']['private'] = $private;
+        $this->options['key']['public'] = $public;
+        $this->options['key']['private'] = $private;
         return $this;
     }
 
