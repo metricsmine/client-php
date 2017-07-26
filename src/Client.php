@@ -18,6 +18,7 @@ class Client {
         'trace' => false,
         'file' => null,
         'line' => null,
+        'url' => null,
     ];
 
     public function __construct($options = []) {
