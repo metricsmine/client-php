@@ -1,15 +1,15 @@
 {
-    "name": "metricsmine/client_php",
+    "name": "metricsmine/client-php",
     "version": "1.8.0",
     "description": "Metricsmine PHP SDK",
     "keywords": ["log", "sdk", "cloud", "log management", "events"],
     "type": "library",
-    "homepage": "https://github.com/metricsmine/client_php",
+    "homepage": "https://github.com/metricsmine/client-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Metricsmine",
-            "homepage": "https://github.com/metricsmine/client_php"
+            "name": “metricsmine",
+            "homepage": "https://github.com/metricsmine/client-php"
         }
     ],
     "require": {
@@ -22,7 +22,7 @@
     },
     "support": {
       "email": "info@metricsmine.com",
-      "issues": "https://github.com/metricsmine/client_php/issues"
+      "issues": "https://github.com/metricsmine/client-php/issues"
     },
     "autoload": {
         "classmap": ["src"]
