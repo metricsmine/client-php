@@ -8,7 +8,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": “metricsmine",
+            "name": "metricsmine",
             "homepage": "https://github.com/metricsmine/client-php"
         }
     ],
@@ -21,11 +21,10 @@
 
     },
     "support": {
-      "email": "info@metricsmine.com",
-      "issues": "https://github.com/metricsmine/client-php/issues"
+        "email": "info@metricsmine.com",
+        "issues": "https://github.com/metricsmine/client-php/issues"
     },
     "autoload": {
         "classmap": ["src"]
-  
     }
 }
