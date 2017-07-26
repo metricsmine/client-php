@@ -1,6 +1,6 @@
 {
     "name": "metricsmine/client-php",
-    "version": "1.8.0",
+    "version": "1.0.0",
     "description": "Metricsmine PHP SDK",
     "keywords": ["log", "php", "sdk", "cloud", "log management", "events"],
     "type": "library",
