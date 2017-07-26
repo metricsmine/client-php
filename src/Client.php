@@ -7,7 +7,7 @@ class Client {
     private $options = [
         'format' => 'json',
         'code' => 'api',
-        'service' => null,
+        'service' => 'php',
         'key' => [
             'public' => null,
             'private' => null,
@@ -113,9 +113,10 @@ class Client {
         }
 
         $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
-            . $this->options['key']['public'] . '/logs';
-        //.'/' . $this->options['service']
-        //        . ($this->options['instance'] ? '/' . $this->options['instance'] : '');
+            . $this->options['key']['public'] . '/logs'
+            . '/' . $this->options['service']
+        //        . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
+        ;
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true);
