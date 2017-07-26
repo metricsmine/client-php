@@ -25,6 +25,7 @@
         "issues": "https://github.com/metricsmine/client-php/issues"
     },
     "autoload": {
-        "classmap": ["src"]
-    }
+        "psr-4": {
+            "Metricsmine\\": "src/"
+        }
 }
