@@ -2,7 +2,7 @@
     "name": "metricsmine/client-php",
     "version": "1.8.0",
     "description": "Metricsmine PHP SDK",
-    "keywords": ["log", "sdk", "cloud", "log management", "events"],
+    "keywords": ["log", "php", "sdk", "cloud", "log management", "events"],
     "type": "library",
     "homepage": "https://github.com/metricsmine/client-php",
     "license": "MIT",
