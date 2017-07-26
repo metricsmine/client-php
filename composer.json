@@ -28,4 +28,5 @@
         "psr-4": {
             "Metricsmine\\": "src/"
         }
+    }
 }
