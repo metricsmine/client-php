@@ -16,6 +16,8 @@ class Client {
         'format' => 'plain',
         'message' => null,
         'trace' => false,
+        'file' => null,
+        'line' => null,
     ];
 
     public function __construct($options = []) {
