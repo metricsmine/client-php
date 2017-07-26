@@ -1,8 +1,8 @@
 
-Metricsmine
+metricsmine
 ==========
 
-Metricsmine is a Real-time Cloud Application and Business Monitoring
+metricsmine is a Real-time Cloud Application and Business Monitoring
 
 metricsmine provides a complete and scalable solution for real-time application monitoring the metrics that impact your business. We provide you with everything you need to know, actively alert you of the most important metrics and logs, and help you to visualize and analyse the data that matters to you.
 
@@ -13,7 +13,7 @@ Metricsmine provides URL and HTTP based APIs that can be easily integrated with 
 For PHP, Metricsmine provides an extension for simplifying the integration even further.
 
 ## Getting started guide
-![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png)  **Take a look at our [Getting started guide for PHP](http://metricsmine.com/documentation/php_integration#getting_started_guide)**.
+**Take a look at our [Getting started guide for PHP](https://metricsmine.com/docs/php)**.
 
 
 ## Setup ######################################################################
@@ -22,44 +22,6 @@ Download metricsmine/client-php from [here](https://github.com/metricsmine/clien
 
 *Note: metricsmine/client-php require PHP 5.6*
 
-## Try it right away
-
-Sign up for a [free account](https://metricsmine.com/users/register/free) so you can try out image transformations and seamless image delivery through CDN.
-
-*Note: Replace `demo` in all the following examples with your Metricsmine's `cloud name`.*  
-
-Accessing an uploaded image with the `sample` public ID through a CDN:
-
-    http://res.metricsmine.com/demo/image/upload/sample.jpg
-
-![Sample](https://metricsmine-a.akamaihd.net/demo/image/upload/w_0.4/sample.jpg "Sample")
-
-Generating a 150x100 version of the `sample` image and downloading it through a CDN:
-
-    http://res.metricsmine.com/demo/image/upload/w_150,h_100,c_fill/sample.jpg
-
-![Sample 150x100](https://metricsmine-a.akamaihd.net/demo/image/upload/w_150,h_100,c_fill/sample.jpg "Sample 150x100")
-
-Converting to a 150x100 PNG with rounded corners of 20 pixels: 
-
-    http://res.metricsmine.com/demo/image/upload/w_150,h_100,c_fill,r_20/sample.png
-
-![Sample 150x150 Rounded PNG](https://metricsmine-a.akamaihd.net/demo/image/upload/w_150,h_100,c_fill,r_20/sample.png "Sample 150x150 Rounded PNG")
-
-For plenty more transformation options, see our [image transformations documentation](http://metricsmine.com/documentation/image_transformations).
-
-Generating a 120x90 thumbnail based on automatic face detection of the Facebook profile picture of Bill Clinton:
- 
-    http://res.metricsmine.com/demo/image/facebook/c_thumb,g_face,h_90,w_120/billclinton.jpg
-    
-![Facebook 90x120](https://metricsmine-a.akamaihd.net/demo/image/facebook/c_thumb,g_face,h_90,w_120/billclinton.jpg "Facebook 90x200")
-
-For more details, see our documentation for embedding [Facebook](http://metricsmine.com/documentation/facebook_profile_pictures) and [Twitter](http://metricsmine.com/documentation/twitter_profile_pictures) profile pictures. 
-
-### Samples
-You can find our simple and ready-to-use samples projects, along with documentations in the [samples folder](https://github.com/metricsmine/client-php/tree/master/samples). Please consult with the [README file](https://github.com/metricsmine/client-php/blob/master/samples/README.md), for usage and explanations.
-
-## Usage
 
 ### Configuration
 
@@ -90,47 +52,17 @@ Same goes for Twitter:
 
     metricsmine_url("billclinton.jpg", array("type" => "twitter_name"))
 
-![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png) **See [our documentation](http://metricsmine.com/documentation/php_image_manipulation) for more information about displaying and transforming images in PHP**.                                         
-
-
-
-### Upload
-
-Assuming you have your Metricsmine configuration parameters defined (`cloud_name`, `api_key`, `api_secret`), uploading to Metricsmine is very simple.
-    
-The following example uploads a local JPG to the cloud: 
-    
-    \Metricsmine\Uploader::upload("my_picture.jpg")
-        
-The uploaded image is assigned a randomly generated public ID. The image is immediately available for download through a CDN:
-
-    metricsmine_url("abcfrmo8zul1mafopawefg.jpg")
-        
-    http://res.metricsmine.com/demo/image/upload/abcfrmo8zul1mafopawefg.jpg
-
-You can also specify your own public ID:    
-    
-    \Metricsmine\Uploader::upload("http://www.example.com/image.jpg", array("public_id" => 'sample_remote'))
-
-    metricsmine_url("sample_remote.jpg")
-
-    http://res.metricsmine.com/demo/image/upload/sample_remote.jpg
-
-
-![](http://res.metricsmine.com/metricsmine/image/upload/see_more_bullet.png) **See [our documentation](http://metricsmine.com/documentation/php_image_upload) for plenty more options of uploading to the cloud from your PHP code**.
+**See [our documentation](http://metricsmine.com/documentation/php_image_manipulation) for more information about displaying and transforming images in PHP**.                                         
 
   
 ## Additional resources ##########################################################
 
 Additional resources are available at:
 
-* [Website](http://metricsmine.com)
+* [Website](https://metricsmine.com/)
 * [Knowledge Base](http://support.metricsmine.com/forums) 
 * [Documentation](http://metricsmine.com/documentation)
 * [Documentation for PHP integration](http://metricsmine.com/documentation/php_integration)
-* [PHP image upload documentation](http://metricsmine.com/documentation/php_image_upload)
-* [PHP image manipulation documentation](http://metricsmine.com/documentation/php_image_manipulation)
-* [Image transformations documentation](http://metricsmine.com/documentation/image_transformations)
 
 ## Support
 
