@@ -107,7 +107,7 @@ class Client {
                     $line_arr['function'] .= $frame['function'] . '()';
                 }
 //                $line_str = trim($line_str);
-                $trace_arr[] = $line_arr;
+                $trace_arr['#' . $i] = $line_arr;
             }
             $trace_str = print_r($trace_arr, true);
 
