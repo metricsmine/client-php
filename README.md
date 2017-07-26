@@ -2,9 +2,9 @@
 Metricsmine
 ==========
 
-Metricsmine is a cloud service that offers a solution to a web application's entire image management pipeline. 
+Metricsmine is a Real-time Cloud Application and Business Monitoring
 
-Easily upload images to the cloud. Automatically perform smart image resizing, cropping and conversion without installing any complex software. Integrate Facebook or Twitter profile image extraction in a snap, in any dimension and style to match your website's graphics requirements. Images are seamlessly delivered through a fast CDN, and much much more. 
+metricsmine provides a complete and scalable solution for real-time application monitoring the metrics that impact your business. We provide you with everything you need to know, actively alert you of the most important metrics and logs, and help you to visualize and analyse the data that matters to you.
 
 Metricsmine offers comprehensive APIs and administration capabilities and is easy to integrate with any web application, existing or new.
 
@@ -18,9 +18,9 @@ For PHP, Metricsmine provides an extension for simplifying the integration even 
 
 ## Setup ######################################################################
 
-Download metricsmine_php from [here](https://github.com/metricsmine/client_php/tarball/master)
+Download metricsmine/client-php from [here](https://github.com/metricsmine/client-php/tarball/master)
 
-*Note: metricsmine_php require PHP 5.6*
+*Note: metricsmine/client-php require PHP 5.6*
 
 ## Try it right away
 
@@ -57,7 +57,7 @@ Generating a 120x90 thumbnail based on automatic face detection of the Facebook 
 For more details, see our documentation for embedding [Facebook](http://metricsmine.com/documentation/facebook_profile_pictures) and [Twitter](http://metricsmine.com/documentation/twitter_profile_pictures) profile pictures. 
 
 ### Samples
-You can find our simple and ready-to-use samples projects, along with documentations in the [samples folder](https://github.com/metricsmine/client_php/tree/master/samples). Please consult with the [README file](https://github.com/metricsmine/client_php/blob/master/samples/README.md), for usage and explanations.
+You can find our simple and ready-to-use samples projects, along with documentations in the [samples folder](https://github.com/metricsmine/client-php/tree/master/samples). Please consult with the [README file](https://github.com/metricsmine/client-php/blob/master/samples/README.md), for usage and explanations.
 
 ## Usage
 
@@ -134,7 +134,7 @@ Additional resources are available at:
 
 ## Support
 
-You can [open an issue through GitHub](https://github.com/metricsmine/client_php/issues).
+You can [open an issue through GitHub](https://github.com/metricsmine/client-php/issues).
 
 Contact us [http://metricsmine.com/contact](http://metricsmine.com/contact)
 
