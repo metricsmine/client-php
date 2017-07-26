@@ -74,7 +74,7 @@ class Client {
         if ($this->options['trace']) {
 
             $trace_arr = [];
-            $trace = debug_backtrace();
+            $trace = (array) debug_backtrace();
 
             if (is_string($this->options['message'])) {
                 
@@ -110,9 +110,9 @@ class Client {
         }
 
         $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
-                . $this->options['key']['public'] . '/logs/'
-                . $this->options['service']
-                . ($this->options['instance'] ? '/' . $this->options['instance'] : '');
+                . $this->options['key']['public'] . '/logs';
+        //.'/' . $this->options['service']
+        //        . ($this->options['instance'] ? '/' . $this->options['instance'] : '');
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true);
@@ -126,15 +126,17 @@ class Client {
             'line' => $this->options['line'],
             'url' => $this->options['url'],
         ]));
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
             'X-Auth-Token: ' . $this->options['key']['private'],
             'Content-type: application/x-www-form-urlencoded',
-        ));
+        ]);
 
-        curl_setopt($curl, CURLOPT_TIMEOUT, 1);
-        curl_setopt($curl, CURLOPT_NOSIGNAL, 1);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 2);
+        curl_setopt($curl, CURLOPT_NOSIGNAL, 2);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
+
+        return true;
     }
 
 }
