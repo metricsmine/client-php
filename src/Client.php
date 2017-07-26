@@ -115,14 +115,14 @@ class Client {
         $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
             . $this->options['key']['public'] . '/logs'
             . '/' . $this->options['service']
-        //        . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
+            . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
         ;
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query([
-            'service' => $this->options['service'],
-            'instance' => $this->options['instance'],
+//            'service' => $this->options['service'],
+//            'instance' => $this->options['instance'],
             'type' => $this->options['type'],
             'format' => $this->options['format'],
             'message' => $this->options['format'] == 'json' ? json_encode($this->options['message']) : (string) $this->options['message'],
