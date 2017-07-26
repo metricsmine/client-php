@@ -85,22 +85,31 @@ class Client {
                 $this->options['format'] = 'json';
             }
             foreach ($trace as $i => $frame) {
-                $line = "#$i\t";
+//                $line_str = "#$i\t";
+                $line_arr = [];
                 if (!isset($frame['file'])) {
-                    $line .= "[internal function]";
+//                    $line_str .= '[internal function]';
+                    $line_arr['file'] = 'internal function';
                 } else {
-                    $line .= $frame['file'] . ":" . $frame['line'];
+//                    $line_str .= $frame['file'] . ':' . $frame['line'];
+                    $line_arr['file'] = $frame['file'];
+                    $line_arr['line'] = (int) $frame['line'];
                 }
-                $line .= "\t";
+//                $line_str .= "\t";
                 if (isset($frame['function'])) {
+                    $line_arr['function'] = '';
+
                     if (isset($frame['class'])) {
-                        $line .= $frame['class'] . '::';
+//                        $line_str .= $frame['class'] . '::';
+                        $line_arr['function'] = $frame['class'] . '::';
                     }
-                    $line .= $frame['function'] . '()';
+//                    $line_str .= $frame['function'] . '()';
+                    $line_arr['function'] .= $frame['function'] . '()';
                 }
-                $trace_arr[] = trim($line);
+//                $line_str = trim($line_str);
+                $trace_arr[] = $line_arr;
             }
-            $trace_str = implode("\n", $trace_arr);
+            $trace_str = print_r($trace_arr, true);
 
             if (is_string($this->options['message'])) {
                 $this->options['message'] .= "\n" . $trace_str;
