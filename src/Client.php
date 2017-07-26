@@ -77,7 +77,7 @@ class Client {
             $trace = (array) debug_backtrace();
 
             if (is_string($this->options['message'])) {
-                
+
             } else {
                 $this->options['format'] = 'json';
             }
@@ -110,7 +110,7 @@ class Client {
         }
 
         $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
-                . $this->options['key']['public'] . '/logs';
+            . $this->options['key']['public'] . '/logs';
         //.'/' . $this->options['service']
         //        . ($this->options['instance'] ? '/' . $this->options['instance'] : '');
 
