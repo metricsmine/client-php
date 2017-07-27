@@ -5,7 +5,6 @@ namespace Metricsmine;
 class Client {
 
     private $options = [
-        'format' => 'json',
         'code' => 'api',
         'service' => 'php',
         'instance' => null,
@@ -82,7 +81,7 @@ class Client {
             $trace = (array) debug_backtrace();
 
             if (is_string($this->options['message'])) {
-
+                $this->options['format'] = 'plain';
             } else {
                 $this->options['format'] = 'json';
             }
@@ -137,7 +136,7 @@ class Client {
 //            'instance' => $this->options['instance'],
             'type' => $this->options['type'],
             'format' => $this->options['format'],
-            'message' => $this->options['format'] == 'json' ? json_encode($this->options['message']) : (string) $this->options['message'],
+            'message' => (!empty($this->options['message']) && !is_string($this->options['message'])) ? json_encode($this->options['message']) : (string) $this->options['message'],
             'file' => $this->options['file'],
             'line' => $this->options['line'],
             'url' => $this->options['url'],
