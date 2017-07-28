@@ -16,6 +16,7 @@ class Client {
         'format' => 'plain',
         'message' => null,
         'trace' => false,
+        'backtrace' => null,
         'file' => null,
         'line' => null,
         'url' => null,
@@ -62,6 +63,11 @@ class Client {
         return $this;
     }
 
+    public function backtrace($name) {
+        $this->options['backtrace'] = $name;
+        return $this;
+    }
+
     public function url($name) {
         $this->options['url'] = $name;
         return $this;
@@ -75,17 +81,17 @@ class Client {
 
     public function send_log() {
 
-        if ($this->options['trace']) {
+        if ($this->options['trace'] && empty($this->options['backtrace'])) {
 
             $trace_arr = [];
-            $trace = (array) debug_backtrace();
+            $this->options['backtrace'] = (array) debug_backtrace();
 
             if (is_string($this->options['message'])) {
                 $this->options['format'] = 'plain';
             } else {
                 $this->options['format'] = 'json';
             }
-            foreach ($trace as $i => $frame) {
+            foreach ($this->options['backtrace'] as $i => $frame) {
 //                $line_str = "#$i\t";
                 $line_arr = [];
                 if (!isset($frame['file'])) {
@@ -123,9 +129,9 @@ class Client {
         }
 
         $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
-            . $this->options['key']['public'] . '/logs'
-            . '/' . $this->options['service']
-            . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
+                . $this->options['key']['public'] . '/logs'
+                . '/' . $this->options['service']
+                . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
 //            . '/'
         ;
 
@@ -137,6 +143,7 @@ class Client {
             'type' => $this->options['type'],
             'format' => $this->options['format'],
             'message' => (!empty($this->options['message']) && !is_string($this->options['message'])) ? json_encode($this->options['message']) : (string) $this->options['message'],
+            'backtrace' => empty($this->options['backtrace']) ? null : json_encode($this->options['backtrace']),
             'file' => $this->options['file'],
             'line' => $this->options['line'],
             'url' => $this->options['url'],
