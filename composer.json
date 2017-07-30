@@ -8,8 +8,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "metricsmine",
-            "homepage": "https://github.com/metricsmine/client-php"
+            "name": "Pablo Martinez",
+            "email": "info@metricsmine.com",
         }
     ],
     "require": {
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Metricsmine\\": "src/"
+            "metricsmine\\": "src/"
         }
     }
 }
