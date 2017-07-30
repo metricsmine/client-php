@@ -9,7 +9,7 @@
     "authors": [
         {
             "name": "Pablo Martinez",
-            "email": "info@metricsmine.com",
+            "email": "info@metricsmine.com"
         }
     ],
     "require": {
@@ -18,7 +18,9 @@
         "ext-json": "*"
     },
     "require-dev": {
-
+        "phpunit/phpunit": "^5.2",
+        "squizlabs/php_codesniffer": "^1.5.0",
+        "satooshi/php-coveralls": "~0.6"
     },
     "support": {
         "email": "info@metricsmine.com",
@@ -26,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "metricsmine\\": "src/"
+            "metricsmine\\client-php\\": "src/"
         }
     }
 }
