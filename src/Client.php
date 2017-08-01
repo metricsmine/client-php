@@ -4,7 +4,7 @@ namespace Metricsmine;
 
 class Client {
 
-    private $options = [
+    protected $config = [
         'code' => 'api',
         'service' => 'php',
         'instance' => null,
@@ -12,135 +12,63 @@ class Client {
             'public' => null,
             'private' => null,
         ],
+    ];
+    private $options = [
         'type' => 'log',
         'format' => 'plain',
         'message' => null,
         'trace' => false,
-        'backtrace' => null,
+        'stacktrace' => null,
         'file' => null,
         'line' => null,
         'url' => null,
     ];
 
-    public function __construct($options = []) {
-        $this->options['instance'] = gethostname();
-        $this->options = array_merge($this->options, $options);
+    public function __construct($public, $private, $code = null) {
+        $this->config['code'] = $code;
+        $this->config['key']['public'] = $public;
+        $this->config['key']['private'] = $private;
+        $this->config['instance'] = gethostname();
     }
 
-    public static function forge($options = []) {
-        return new static($options);
+    public static function forge($public, $private, $code = null) {
+        return new static($public, $private, $code);
     }
 
-    public function service($name) {
-        $this->options['service'] = $name;
+    public function __set($name, $value, $second = null) {
+        $this->options[$name] = $value;
+        if ($name == 'file') {
+            $this->options['file'] = $value;
+            $this->options['line'] = $second;
+        }
         return $this;
     }
 
-    public function keys($public, $private, $code = null) {
-        $this->options['code'] = $code;
-        $this->options['key']['public'] = $public;
-        $this->options['key']['private'] = $private;
-        return $this;
+    public function __get($name) {
+        if (array_key_exists($name, $this->options)) {
+            return $this->options[$name];
+        }
     }
 
-    public function instance($name) {
-        $this->options['instance'] = $name;
-        return $this;
-    }
-
-    public function type($name) {
-        $this->options['type'] = $name;
-        return $this;
-    }
-
-    public function message($name) {
-        $this->options['message'] = $name;
-        return $this;
-    }
-
-    public function trace() {
-        $this->options['trace'] = true;
-        return $this;
-    }
-
-    public function backtrace($name) {
-        $this->options['backtrace'] = $name;
-        return $this;
-    }
-
-    public function url($name) {
-        $this->options['url'] = $name;
-        return $this;
-    }
-
-    public function file($name, $line) {
-        $this->options['file'] = $name;
-        $this->options['line'] = $line;
+    public function stacktrace() {
+        $this->options['stacktrace'] = \Stacktrace::forge($this->config);
         return $this;
     }
 
     public function send_log() {
 
-        if ($this->options['trace'] && empty($this->options['backtrace'])) {
-
-            $trace_arr = [];
-            $this->options['backtrace'] = (array) debug_backtrace();
-
-            if (is_string($this->options['message'])) {
-                $this->options['format'] = 'plain';
-            } else {
-                $this->options['format'] = 'json';
-            }
-            foreach ($this->options['backtrace'] as $i => $frame) {
-//                $line_str = "#$i\t";
-                $line_arr = [];
-                if (!isset($frame['file'])) {
-//                    $line_str .= '[internal function]';
-                    $line_arr['file'] = 'internal function';
-                } else {
-//                    $line_str .= $frame['file'] . ':' . $frame['line'];
-                    $line_arr['file'] = $frame['file'];
-                    $line_arr['line'] = (int) $frame['line'];
-                }
-//                $line_str .= "\t";
-                if (isset($frame['function'])) {
-                    $line_arr['function'] = '';
-
-                    if (isset($frame['class'])) {
-//                        $line_str .= $frame['class'] . '::';
-                        $line_arr['function'] = $frame['class'] . '::';
-                    }
-//                    $line_str .= $frame['function'] . '()';
-                    $line_arr['function'] .= $frame['function'] . '()';
-                }
-//                $line_str = trim($line_str);
-                $trace_arr['#' . $i] = $line_arr;
-            }
-            $trace_str = print_r($trace_arr, true);
-
-            if (is_string($this->options['message'])) {
-                $this->options['message'] .= "\n" . $trace_str;
-            } elseif (is_array($this->options['message'])) {
-                $this->options['message']['trace'] = $trace_arr;
-            } elseif (is_object($this->options['message'])) {
-                $this->options['message']->trace = (Object) $trace_arr;
-            }
-            unset($trace_str, $trace_arr);
-        }
-
-        $url = 'https://' . $this->options['code'] . '.metricsmine.com/api/'
-                . $this->options['key']['public'] . '/logs'
-                . '/' . $this->options['service']
-                . ($this->options['instance'] ? '/' . $this->options['instance'] : '')
+        $client = HttpClient::forge($this->config);
+        $url = 'https://' . $this->config['code'] . '.metricsmine.com/api/'
+            . $this->config['key']['public'] . '/logs'
+            . '/' . $this->config['service']
+            . ($this->config['instance'] ? '/' . $this->config['instance'] : '')
 //            . '/'
         ;
 
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query([
 //            'service' => $this->options['service'],
 //            'instance' => $this->options['instance'],
-            'type' => $this->options['type'],
+            'type' => $this->type(),
             'format' => $this->options['format'],
             'message' => (!empty($this->options['message']) && !is_string($this->options['message'])) ? json_encode($this->options['message']) : (string) $this->options['message'],
             'backtrace' => empty($this->options['backtrace']) ? null : json_encode($this->options['backtrace']),
@@ -153,10 +81,6 @@ class Client {
             'Content-type: application/x-www-form-urlencoded',
         ]);
 
-        curl_setopt($curl, CURLOPT_TIMEOUT, 2);
-        curl_setopt($curl, CURLOPT_NOSIGNAL, 2);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($curl);
 
         return true;
     }
