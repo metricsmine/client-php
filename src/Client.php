@@ -57,19 +57,19 @@ class Client {
             $this
                 ->message($type_name . ' - ' . $message)
                 ->type($type_name)
-                ->stacktrace(\Stacktrace::forge($this->config));
+                ->stacktrace(Stacktrace::forge($this->config));
         } else {
             $this
                 ->message(get_class($report) . ' - ' . $report->getMessage())
                 ->type(ErrorTypes::getSeverity($report->getType()))
-                ->stacktrace(\Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
+                ->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
 
 //            if (method_exists($report, 'getPrevious')) {
 //                $this->setPrevious($report->getPrevious());
 //            }
         }
 
-        $client = \HttpClient::forge($this->config);
+        $client = HttpClient::forge($this->config);
 
         $client->send($this->options);
 
