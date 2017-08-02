@@ -7,12 +7,13 @@ class Stacktrace {
     protected $config = [];
     protected $frames = [];
 
-    public static function forge(array $config) {
+    public static function forge(array $config, array $backtrace = null, string $file = '[generator]', int $line = 0) {
 
         // Reduce memory usage by omitting args and objects from backtrace
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS & ~DEBUG_BACKTRACE_PROVIDE_OBJECT);
+        empty($backtrace)
+            and $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS & ~DEBUG_BACKTRACE_PROVIDE_OBJECT);
 
-        return new static($config, $backtrace, '[generator]', 0);
+        return new static($config, $backtrace, $file, $line);
     }
 
     public static function __construct(array $config, array $backtrace, $topFile, $topLine) {
