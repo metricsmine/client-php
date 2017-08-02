@@ -1,6 +1,6 @@
 <?php
 
-namespace Metricsmine;
+namespace metricsmine;
 
 class Stacktrace {
 
@@ -43,7 +43,7 @@ class Stacktrace {
     }
 
     public static function frameInsideVendor(array $frame) {
-        return isset($frame['class']) && strpos($frame['class'], 'Metricsmine\\') === 0 && substr_count($frame['class'], '\\') === 1;
+        return isset($frame['class']) && stripos($frame['class'], 'metricsmine\\') === 0 && substr_count($frame['class'], '\\') === 1;
     }
 
     public function addFrame($file, $line, $method, $class = null) {

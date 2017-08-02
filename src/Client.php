@@ -1,10 +1,10 @@
 <?php
 
-namespace Metricsmine;
+namespace metricsmine;
 
-use Metricsmine\Stacktrace;
-use Metricsmine\HttpClient;
-use Metricsmine\ErrorTypes;
+use metricsmine\Stacktrace;
+use metricsmine\HttpClient;
+use metricsmine\ErrorTypes;
 
 class Client {
 
