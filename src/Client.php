@@ -39,12 +39,8 @@ class Client {
         return new static($public, $private, $code);
     }
 
-    public function __set($name, $value, $second = null) {
+    public function __set($name, $value) {
         $this->options[$name] = $value;
-        if ($name == 'file') {
-            $this->options['file'] = $value;
-            $this->options['line'] = $second;
-        }
         return $this;
     }
 
