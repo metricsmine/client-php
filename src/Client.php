@@ -55,7 +55,7 @@ class Client {
     public function notify($report, $message = null) {
 
         $this->stacktrace([]);
-        if (!$report instanceof Throwable && !$report instanceof Exception) {
+        if (!($report instanceof \Throwable) && !($report instanceof \Exception)) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
             $this->type($type_name);
