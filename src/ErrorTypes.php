@@ -1,6 +1,6 @@
 <?php
 
-namespace metricsmine;
+namespace metricsmine\client-php;
 
 class ErrorTypes {
 
