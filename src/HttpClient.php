@@ -44,13 +44,14 @@ class HttpClient {
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query([
 //            'service' => $options['service'],
 //            'instance' => $options['instance'],
-            'type' => $options['type'],
-            'format' => $options['format'],
-            'message' => (!empty($options['message']) && is_scalar($options['message'])) ?  (string) $options['message'] : json_encode($options['message']),
+            'type'      => $options['type'],
+            'format'    => $options['format'],
+            'title'     => (!empty($options['title']) ? (string) $options['title'] : ''),
+            'message'   => (!empty($options['message']) && is_scalar($options['message'])) ? (string) $options['message'] : json_encode($options['message']),
             'backtrace' => empty($options['backtrace']) ? null : json_encode($options['backtrace']),
-            'file' => $options['file'],
-            'line' => $options['line'],
-            'url' => $options['url'],
+            'file'      => $options['file'],
+            'line'      => $options['line'],
+            'url'       => $options['url'],
         ]));
 
         curl_exec($this->curl);
