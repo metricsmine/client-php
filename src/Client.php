@@ -53,6 +53,8 @@ class Client {
     }
 
     public function notify($report, $message = null) {
+
+        $this->stacktrace([]);
         if (!$report instanceof Throwable && !$report instanceof Exception) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
@@ -67,15 +69,20 @@ class Client {
                 $this->title($type_name);
             }
 
-            $this
-                ->type($type_name)
-                ->stacktrace(Stacktrace::forge($this->config));
+            $this->type($type_name);
+
+            if ($this->trace() == true) {
+                $this->stacktrace(Stacktrace::forge($this->config));
+            }
         } else {
             $this
                 ->title($report->getMessage())
                 ->message(get_class($report) . ' - ' . $report->getMessage())
-                ->type(ErrorTypes::getSeverity($report->getType()))
-                ->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
+                ->type(ErrorTypes::getSeverity($report->getType()));
+
+            if ($this->trace() == true) {
+                $this->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
+            }
 
             if (method_exists($report, 'getPrevious')) {
 //                $this->setPrevious($report->getPrevious());
