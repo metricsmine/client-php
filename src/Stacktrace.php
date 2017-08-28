@@ -16,7 +16,7 @@ class Stacktrace {
         return new static($config, $backtrace, $file, $line);
     }
 
-    public static function __construct(array $config, array $backtrace, $topFile, $topLine) {
+    public function __construct(array $config, array $backtrace, $topFile, $topLine) {
         $this->config = $config;
 
         // PHP backtrace's are misaligned, we need to shift the file/line down a frame
