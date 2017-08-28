@@ -51,7 +51,7 @@ class Client {
         if (!$report instanceof Throwable && !$report instanceof Exception) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
-            if (is_scalar($report)) {
+            if (is_scalar($message)) {
                 $this->message($type_name . ' - ' . $message);
             } else {
                 $this->message($message);
