@@ -9,23 +9,23 @@ use metricsmine\clientPHP\ErrorTypes;
 class Client {
 
     protected $config = [
-        'code' => 'api',
-        'service' => 'php',
+        'code'     => 'api',
+        'service'  => 'php',
         'instance' => null,
-        'key' => [
-            'public' => null,
+        'key'      => [
+            'public'  => null,
             'private' => null,
         ],
     ];
     private $options = [
-        'type' => 'log',
-        'format' => 'plain',
-        'message' => null,
-        'trace' => false,
+        'type'       => 'log',
+        'format'     => 'plain',
+        'message'    => null,
+        'trace'      => false,
         'stacktrace' => null,
-        'file' => null,
-        'line' => null,
-        'url' => null,
+        'file'       => null,
+        'line'       => null,
+        'url'        => null,
     ];
 
     public function __construct($public, $private, $code = null) {
@@ -39,12 +39,12 @@ class Client {
         return new static($public, $private, $code);
     }
 
-    public function __set($name, $value) {
+    public function __set(string $name, mixed $value) {
         $this->options[$name] = $value;
         return $this;
     }
 
-    public function __get($name) {
+    public function __get(string $name) {
         if (array_key_exists($name, $this->options)) {
             return $this->options[$name];
         }
