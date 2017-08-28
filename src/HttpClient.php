@@ -46,7 +46,7 @@ class HttpClient {
 //            'instance' => $options['instance'],
             'type' => $options['type'],
             'format' => $options['format'],
-            'message' => (!empty($options['message']) && !is_string($options['message'])) ? json_encode($options['message']) : (string) $options['message'],
+            'message' => (!empty($options['message']) && is_scalar($options['message'])) ?  (string) $options['message'] : json_encode($options['message']),
             'backtrace' => empty($options['backtrace']) ? null : json_encode($options['backtrace']),
             'file' => $options['file'],
             'line' => $options['line'],
