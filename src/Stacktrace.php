@@ -4,7 +4,7 @@ namespace metricsmine\clientPHP;
 
 class Stacktrace {
 
-    const NUM_LINES  = 12;
+    const NUM_LINES = 12;
     const MAX_LENGTH = 200;
 
     protected $config = [];
@@ -49,6 +49,14 @@ class Stacktrace {
         return isset($frame['class']) && stripos($frame['class'], 'metricsmine\\') === 0 && substr_count($frame['class'], '\\') === 1;
     }
 
+    public function toArray() {
+        return $this->frames;
+    }
+
+    public function getFrames() {
+        return $this->frames;
+    }
+
     public function addFrame($file, $line, $method, $class = null) {
         // Account for special "filenames" in eval'd code
         $matches = [];
@@ -60,7 +68,7 @@ class Stacktrace {
         // Construct the frame
         $frame = [
             'lineNumber' => (int) $line,
-            'method' => $class ? "$class::$method" : $method,
+            'method'     => $class ? "$class::$method" : $method,
         ];
 
         // Attach some lines of code for context

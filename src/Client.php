@@ -70,7 +70,7 @@ class Client {
             }
 
             if ($this->trace() === true) {
-                $this->stacktrace(Stacktrace::forge($this->config));
+                $this->stacktrace(Stacktrace::forge($this->config)->toArray());
             }
         } else {
 
@@ -87,7 +87,7 @@ class Client {
                 ->line($report->getline());
 
             if ($this->trace() === true) {
-                $this->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
+                $this->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine())->toArray());
             }
 
             if (method_exists($report, 'getPrevious')) {
