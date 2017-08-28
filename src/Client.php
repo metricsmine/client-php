@@ -78,7 +78,9 @@ class Client {
             $this
                 ->title($report->getMessage())
                 ->message(get_class($report) . ' - ' . $report->getMessage())
-                ->type(ErrorTypes::getSeverity($report->getType()));
+                ->type(ErrorTypes::getSeverity($report->getType()))
+                ->file($report->getFile())
+                ->line($report->getline());
 
             if ($this->trace() == true) {
                 $this->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
