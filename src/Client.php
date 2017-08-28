@@ -29,10 +29,10 @@ class Client {
     ];
 
     public function __construct($public, $private, $code = null) {
-        \Arr::set($this->config, 'instance', gethostname());
-        \Arr::set($this->config, 'code', $code);
-        \Arr::set($this->config, 'key.public', $public);
-        \Arr::set($this->config, 'key.private', $private);
+        $this->config['code'] = $code;
+        $this->config['key']['public'] = $public;
+        $this->config['key']['private'] = $private;
+        $this->config['instance'] = gethostname();
     }
 
     public static function forge($public, $private, $code = null) {
@@ -41,9 +41,13 @@ class Client {
 
     public function __call(string $name, $values) {
         if (empty($values)) {
-            return \Arr::set($this->options, $name);
+            if (array_key_exists($name, $this->options)) {
+                return $this->options[$name];
+            }
+            return null;
         }
-        \Arr::set($this->options, $name, current($values));
+        $this->options[$name] = current($values);
+
         return $this;
     }
 
