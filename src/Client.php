@@ -80,7 +80,7 @@ class Client {
 
             $this
                 ->title($report->getMessage())
-                ->message(get_class($report) . ' - ' . $report->getMessage())
+                ->message(get_class($report) . ' - ' . ($type_name == 'Exception' ? $report->getCode() . ' - ' : '') . $report->getMessage())
                 ->format('plain')
                 ->type($type_name)
                 ->file($report->getFile())
