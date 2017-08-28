@@ -78,7 +78,7 @@ class Stacktrace {
         }
 
         try {
-            $file = new SplFileObject($path);
+            $file = new \SplFileObject($path);
             $file->seek(PHP_INT_MAX);
 
             $bounds = static::getBounds($line, $numLines, $file->key() + 1);
