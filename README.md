@@ -25,7 +25,7 @@ Download metricsmine/client-php from [here](https://github.com/metricsmine/clien
 
 ### Configuration
 
-    \Metricsmine\Client::forge()
+    metricsmine\clientPHP\Client::forge()
         ->keys($public, $private)
         ->service('php')
         ->instance(gethostname())
@@ -50,4 +50,3 @@ Contact us [http://metricsmine.com/contact](http://metricsmine.com/contact)
 ## License #######################################################################
 
 Released under the MIT license.
-
