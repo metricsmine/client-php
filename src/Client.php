@@ -1,10 +1,10 @@
 <?php
 
-namespace metricsmine\client-php;
+namespace metricsmine\clientPHP;
 
-use metricsmine\client-php\Stacktrace;
-use metricsmine\client-php\HttpClient;
-use metricsmine\client-php\ErrorTypes;
+use metricsmine\clientPHP\Stacktrace;
+use metricsmine\clientPHP\HttpClient;
+use metricsmine\clientPHP\ErrorTypes;
 
 class Client {
 

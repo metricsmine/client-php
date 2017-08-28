@@ -1,6 +1,6 @@
 <?php
 
-namespace metricsmine\client-php;
+namespace metricsmine\clientPHP;
 
 class HttpClient {
 
