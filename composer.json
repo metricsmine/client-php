@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "client-php\\" : "src/"
+            "metricsmine\\client-php\\": "src/"
         }
     }
 }
