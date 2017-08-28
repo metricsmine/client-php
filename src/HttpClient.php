@@ -37,7 +37,7 @@ class HttpClient {
 
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
-            'X-Auth-Token: ' . $options['key']['private'],
+            'X-Auth-Token: ' . $this->config['key']['private'],
             'Content-type: application/x-www-form-urlencoded',
         ]);
 
