@@ -39,13 +39,12 @@ class Client {
         return new static($public, $private, $code);
     }
 
-    public function __set(string $name, mixed $value) {
-        \Arr::set($this->options, $name, $value);
+    public function __call(string $name, $values) {
+        if (empty($values)) {
+            return \Arr::set($this->options, $name);
+        }
+        \Arr::set($this->options, $name, current($values));
         return $this;
-    }
-
-    public function __get(string $name) {
-        return \Arr::set($this->options, $name);
     }
 
     public function notify($report, $message = null) {
