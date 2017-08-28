@@ -55,7 +55,7 @@ class Client {
         if (!$report instanceof Throwable && !$report instanceof Exception) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
-            if (is_scalar($message)) {
+            if (empty($message) || is_scalar($message)) {
                 $this->message($type_name . ' - ' . $message);
             } else {
                 $this->message($message)
@@ -67,12 +67,13 @@ class Client {
         } else {
             $this
                 ->message(get_class($report) . ' - ' . $report->getMessage())
+                ->format('plain')
                 ->type(ErrorTypes::getSeverity($report->getType()))
                 ->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
 
-//            if (method_exists($report, 'getPrevious')) {
+            if (method_exists($report, 'getPrevious')) {
 //                $this->setPrevious($report->getPrevious());
-//            }
+            }
         }
 
         $client = HttpClient::forge($this->config);
