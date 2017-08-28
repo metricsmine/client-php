@@ -81,6 +81,7 @@ class Client {
             $this
                 ->title($report->getMessage())
                 ->message(get_class($report) . ' - ' . $report->getMessage())
+                ->format('plain')
                 ->type($type_name)
                 ->file($report->getFile())
                 ->line($report->getline());
