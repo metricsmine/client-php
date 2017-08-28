@@ -58,7 +58,8 @@ class Client {
             if (is_scalar($message)) {
                 $this->message($type_name . ' - ' . $message);
             } else {
-                $this->message($message);
+                $this->message($message)
+                    ->format('json');
             }
             $this
                 ->type($type_name)
