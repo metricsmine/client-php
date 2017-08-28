@@ -72,10 +72,17 @@ class Client {
                 $this->stacktrace(Stacktrace::forge($this->config));
             }
         } else {
+
+            $type_name = ErrorTypes::getSeverity($report->getType());
+            empty($type_name)
+                and $type_name = ErrorTypes::getSeverity($report->getCode());
+            empty($type_name)
+                and $type_name = 'Exception';
+
             $this
                 ->title($report->getMessage())
                 ->message(get_class($report) . ' - ' . $report->getMessage())
-                ->type(ErrorTypes::getSeverity($report->getType()))
+                ->type($type_name)
                 ->file($report->getFile())
                 ->line($report->getline());
 
