@@ -67,7 +67,7 @@ class Stacktrace {
 
         // Construct the frame
         $frame = [
-            'lineNumber' => (int) $line,
+            'line' => (int) $line,
             'method'     => $class ? "$class::$method" : $method,
         ];
 
