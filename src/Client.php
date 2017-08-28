@@ -51,8 +51,12 @@ class Client {
         if (!$report instanceof Throwable && !$report instanceof Exception) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
+            if (is_scalar($report)) {
+                $this->message($type_name . ' - ' . $message);
+            } else {
+                $this->message($message);
+            }
             $this
-                ->message($type_name . ' - ' . $message)
                 ->type($type_name)
                 ->stacktrace(Stacktrace::forge($this->config));
         } else {
