@@ -4,7 +4,8 @@ namespace metricsmine\clientPHP;
 
 class Stacktrace {
 
-    const NUM_LINES = 12;
+    const NUM_LINES  = 12;
+    const MAX_LENGTH = 200;
 
     protected $config = [];
     protected $frames = [];
