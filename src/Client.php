@@ -58,20 +58,17 @@ class Client {
         if (!$report instanceof Throwable && !$report instanceof Exception) {
 
             $type_name = is_numeric($report) ? ErrorTypes::getSeverity($report) : $report;
+            $this->type($type_name);
+
             if (is_scalar($message)) {
                 $this->message($type_name . ' - ' . $message);
             } else {
-                $this->message($message)
+                $this
+                    ->message($message)
                     ->format('json');
             }
 
-            if (!$this->title()) {
-                $this->title($type_name);
-            }
-
-            $this->type($type_name);
-
-            if ($this->trace() == true) {
+            if ($this->trace() === true) {
                 $this->stacktrace(Stacktrace::forge($this->config));
             }
         } else {
@@ -82,7 +79,7 @@ class Client {
                 ->file($report->getFile())
                 ->line($report->getline());
 
-            if ($this->trace() == true) {
+            if ($this->trace() === true) {
                 $this->stacktrace(Stacktrace::forge($this->config, $report->getTrace(), $report->getFile(), $report->getLine()));
             }
 
