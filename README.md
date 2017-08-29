@@ -25,13 +25,23 @@ Download metricsmine/client-php from [here](https://github.com/metricsmine/clien
 
 ### Configuration
 
-    metricsmine\clientPHP\Client::forge()
+    $client = metricsmine\clientPHP\Client::forge()
         ->keys($public, $private)
         ->service('php')
-        ->instance(gethostname())
-        ->trace()
+        ->instance(gethostname());
+
+    $client
+        ->trace(true)
         ->message($variable)
-        ->send_log();
+        ->event();
+
+    $client
+        ->trace(true)
+        ->message(['message' => $message])
+        ->event();
+
+    $client
+        ->metric('cpu');
 
 **See [our documentation](http://metricsmine.com/documentation/php_image_manipulation) for more information about displaying and transforming images in PHP**.
 

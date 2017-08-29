@@ -52,7 +52,11 @@ class Client {
         return $this;
     }
 
-    public function notify($report, $message = null) {
+    public function metrics($metric) {
+
+    }
+
+    public function event($report, $message = null) {
 
         $this->stacktrace([]);
 
