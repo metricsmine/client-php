@@ -17,7 +17,7 @@ class Client {
             'private' => null,
         ],
     ];
-    private $options = [
+    private $options  = [
         'type'       => 'log',
         'format'     => 'plain',
         'title'      => null,
@@ -30,10 +30,10 @@ class Client {
     ];
 
     public function __construct($public, $private, $code = null) {
-        $this->config['code'] = $code;
-        $this->config['key']['public'] = $public;
+        $this->config['code']           = $code;
+        $this->config['key']['public']  = $public;
         $this->config['key']['private'] = $private;
-        $this->config['instance'] = gethostname();
+        $this->config['instance']       = gethostname();
     }
 
     public static function forge($public, $private, $code = null) {
@@ -99,7 +99,7 @@ class Client {
             }
         }
 
-        $client = HttpClient::forge($this->config);
+        $client = HttpClient::forge($this->config, '/logs');
 
         $client->send($this->options);
 
