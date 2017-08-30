@@ -17,7 +17,7 @@ class Client {
             'private' => null,
         ],
     ];
-    private $options  = [
+    private $options = [
         'trace'      => false,
         'title'      => null,
         'message'    => null,
@@ -27,17 +27,17 @@ class Client {
         'line'       => null,
         'url'        => null,
         // metrics
-        'unique' => null,
-        'value' => null	,
-        'unit_type' => null ,
-        'unit' => null,
+        'unique'     => null,
+        'value'      => null,
+        'unit_type'  => null,
+        'unit'       => null,
     ];
 
     public function __construct($public, $private, $code = null) {
-        $this->config['code']           = $code;
-        $this->config['key']['public']  = $public;
+        $this->config['code'] = $code;
+        $this->config['key']['public'] = $public;
         $this->config['key']['private'] = $private;
-        $this->config['instance']       = gethostname();
+        $this->config['instance'] = gethostname();
     }
 
     public static function forge($public, $private, $code = null) {
@@ -58,16 +58,16 @@ class Client {
 
     public function metrics($metric, $value, $unit = null) {
 
-      $this->value($value);
-      $this->unit($unit);
-      $this->metric($metric);
+        $this->value($value);
+        $this->unit($unit);
+        $this->metric($metric);
 
-      $client = HttpClient::forge($this->config, '/metrics');
+        $client = HttpClient::forge($this->config);
 
-      $client->send($this->options);
+        $client->send($this->options, '/metrics');
 
 
-      return $this;
+        return $this;
     }
 
     public function event($report, $message = null) {
@@ -113,9 +113,9 @@ class Client {
             }
         }
 
-        $client = HttpClient::forge($this->config, '/logs');
+        $client = HttpClient::forge($this->config);
 
-        $client->send($this->options);
+        $client->send($this->options, '/logs');
 
 
 
