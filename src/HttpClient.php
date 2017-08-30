@@ -51,14 +51,13 @@ class HttpClient {
                 ];
                 break;
             case '/metrics':
-            $url .=  '/'.$options['metric']
-                . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
-        $fields = [
-          'unique'	 => $options['unique'],
-          'unit_type'	 => $options['unit_type'],
-          'unit'	 => $options['unit'],
-
-        ];
+                $url .= '/' . $options['metric']
+                    . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
+                $fields = [
+                    'unique'    => $options['unique'],
+                    'unit_type' => $options['unit_type'],
+                    'unit'      => $options['unit'],
+                ];
                 break;
         }
 

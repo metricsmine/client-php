@@ -56,11 +56,11 @@ class Client {
         return $this;
     }
 
-    public function metrics($metric, $value, $unit = null) {
+    public function metric($metric, $value, $unit = null) {
 
         $this->value($value);
         $this->unit($unit);
-        $this->metric($metric);
+        $this->options['metric'] = trim($metric);
 
         $client = HttpClient::forge($this->config);
 
