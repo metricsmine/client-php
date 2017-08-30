@@ -40,8 +40,6 @@ class HttpClient {
 
 
                 $fields = [
-//            'service' => $options['service'],
-//            'instance' => $options['instance'],
                     'type'       => $options['type'],
                     'format'     => $options['format'],
                     'title'      => (!empty($options['title']) ? (string) $options['title'] : ''),
@@ -53,8 +51,14 @@ class HttpClient {
                 ];
                 break;
             case '/metrics':
-//                $url .= '/' . $this->config['service']
-//                    . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
+            $url .=  '/'.$options['metric']
+                . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
+        $fields = [
+          'unique'	 => $options['unique'],
+          'unit_type'	 => $options['unit_type'],
+          'unit'	 => $options['unit'],
+
+        ];
                 break;
         }
 

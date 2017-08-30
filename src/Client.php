@@ -18,15 +18,18 @@ class Client {
         ],
     ];
     private $options  = [
-        'type'       => 'log',
-        'format'     => 'plain',
+        'trace'      => false,
         'title'      => null,
         'message'    => null,
-        'trace'      => false,
+        'format'     => 'plain',
         'stacktrace' => null,
         'file'       => null,
         'line'       => null,
         'url'        => null,
+        'unique' => null,
+        'value' => null	,
+        'unit_type' => null ,
+        'unit' => null,
     ];
 
     public function __construct($public, $private, $code = null) {
@@ -52,8 +55,18 @@ class Client {
         return $this;
     }
 
-    public function metrics($metric) {
+    public function metrics($metric, $value, $unit = null) {
 
+      $this->value($value);
+      $this->unit($unit);
+      $this->metric($metric);
+      
+      $client = HttpClient::forge($this->config, '/metrics');
+
+      $client->send($this->options);
+
+
+      return $this;
     }
 
     public function event($report, $message = null) {
