@@ -35,8 +35,8 @@ class HttpClient {
 
         switch ($endpoint) {
             case '/logs':
-                $url .= '/' . $this->config['service']
-                    . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
+                $url .= '/' . $options['service']
+                    . ($options['instance'] ? '/' . $options['instance'] : '');
 
 
                 $fields = [
@@ -52,7 +52,7 @@ class HttpClient {
                 break;
             case '/metrics':
                 $url .= '/' . $options['metric']
-                    . ($this->config['instance'] ? '/' . $this->config['instance'] : '');
+                    . ($options['instance'] ? '/' . $options['instance'] : '');
                 $fields = [
                     'unique'    => $options['unique'],
                     'unit_type' => $options['unit_type'],

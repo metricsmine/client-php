@@ -10,14 +10,15 @@ class Client {
 
     protected $config = [
         'code'     => 'api',
-        'service'  => 'php',
-        'instance' => null,
         'key'      => [
             'public'  => null,
             'private' => null,
         ],
     ];
     private $options = [
+        'service'  => 'php',
+        'instance' => null,
+        //
         'trace'      => false,
         'title'      => null,
         'message'    => null,
@@ -37,7 +38,7 @@ class Client {
         $this->config['code'] = $code;
         $this->config['key']['public'] = $public;
         $this->config['key']['private'] = $private;
-        $this->config['instance'] = gethostname();
+        $this->options['instance'] = gethostname();
     }
 
     public static function forge($public, $private, $code = null) {
