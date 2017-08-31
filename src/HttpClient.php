@@ -29,14 +29,14 @@ class HttpClient {
         }
 
         $url = 'https://' . $this->config['code'] . '.metricsmine.com/api/'
-            . $this->config['key']['public'] . $endpoint;
+                . $this->config['key']['public'] . $endpoint;
 
         $fields = [];
 
         switch ($endpoint) {
             case '/logs':
                 $url .= '/' . $options['service']
-                    . ($options['instance'] ? '/' . $options['instance'] : '');
+                        . ($options['instance'] ? '/' . $options['instance'] : '');
 
 
                 $fields = [
@@ -51,9 +51,10 @@ class HttpClient {
                 ];
                 break;
             case '/metrics':
-                $url .= '/' . $options['metric']
-                    . ($options['instance'] ? '/' . $options['instance'] : '');
+                $url    .= '/' . $options['metric']
+                        . ($options['instance'] ? '/' . $options['instance'] : '');
                 $fields = [
+                    'value'     => $options['value'],
                     'unique'    => $options['unique'],
                     'unit_type' => $options['unit_type'],
                     'unit'      => $options['unit'],
